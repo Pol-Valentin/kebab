@@ -10,6 +10,11 @@ class Kebab
     private $ingredients;
 
     /**
+     * @var Sauce|null
+     */
+    private $sauce;
+
+    /**
      * Kebab constructor.
      * @param Ingredient[] $ingredients
      */
@@ -34,6 +39,22 @@ class Kebab
     public function getIngredients()
     {
         return $this->ingredients;
+    }
+
+    public function doubleFromage()
+    {
+        $ingredients = [];
+
+        foreach($this->ingredients as $ingredient){
+            if(strtolower($ingredient->getName()) === 'Fromage'){
+                $ingredients[] = $ingredient;
+                $ingredients[] = $ingredient;
+            }else{
+                $ingredients[] = $ingredient;
+            }
+        }
+
+        $this->ingredients = $ingredients;
     }
 
     /**
