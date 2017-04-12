@@ -1,0 +1,7 @@
+suites:
+    default:
+        namespace: Kata
+        spec_path: %paths.config%/tests/
+        psr4_prefix: Kata
+
+
