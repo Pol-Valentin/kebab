@@ -26,7 +26,6 @@ class KebabSpec extends ObjectBehavior
         $this->then_it_should_not_be_vegetarian();
     }
 
-
     public function it_should_not_be_vegetarian_when_produced_without_meat()
     {
         $this->given_there_is_vegetable_ingredient();
@@ -34,6 +33,14 @@ class KebabSpec extends ObjectBehavior
         $this->when_i_produce_a_kebab();
 
         $this->then_it_should_be_vegetarian();
+    }
+
+    public function it_should_remove_oignon_from_my_kebab()
+    {
+        $this->given_there_is_vegetable_ingredient();
+        $this->given_there_is_oignon_ingredient();
+        $this->when_i_produce_a_kebab();
+        $this->then_it_should_not_have_oignon();
     }
 
     private function given_there_is_a_meat_ingredient()
@@ -47,6 +54,12 @@ class KebabSpec extends ObjectBehavior
         $this->ingredients[] = new Ingredient('Salade', false);
     }
 
+
+    private function given_there_is_oignon_ingredient()
+    {
+        $this->ingredients[] = new Ingredient('oignon', false);
+    }
+
     private function when_i_produce_a_kebab()
     {
         $this->beConstructedWith($this->ingredients);
@@ -55,6 +68,11 @@ class KebabSpec extends ObjectBehavior
     private function then_it_should_not_be_vegetarian()
     {
         $this->isVegetarian()->shouldBe(false);
+    }
+
+    private function then_it_should_not_have_oignon()
+    {
+        $this->getIngredients()->shouldNotContain(new Ingredient('oignon', false));
     }
 
     private function then_it_should_be_vegetarian()

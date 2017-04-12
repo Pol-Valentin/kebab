@@ -31,4 +31,9 @@ class Ingredient
     {
         return $this->isMeat;
     }
+
+    public function getName()
+    {
+        return $this->name;
+    }
 }

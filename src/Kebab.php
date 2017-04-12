@@ -27,4 +27,28 @@ class Kebab
         }
         return true;
     }
+
+    /**
+     * @return array|Ingredient[]
+     */
+    public function getIngredients()
+    {
+        return $this->ingredients;
+    }
+
+    /**
+     * @return Kebab
+     */
+    public function removeOignon()
+    {
+        $this->ingredients = array_filter($this->ingredients, function(Ingredient $ingredient){
+            if(strtolower($ingredient->getName()) === 'oignon'){
+                return false;
+            }
+
+            return true;
+        });
+
+        return $this;
+    }
 }
